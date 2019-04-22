@@ -18,5 +18,5 @@ $(directory):
 
 
 test_all:
-	python -m unittest tests/*
+	python -m unittest tests/*.py
 
