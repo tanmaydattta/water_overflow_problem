@@ -7,11 +7,16 @@ force_venv: | $(directory)
 	source ./$(directory)/bin/activate; \
 	pip install -r requirements.txt; \
 
+venv:
 $(directory): 
-	virtualenv -p python3 $(directory)
-	source ./$(directory)/bin/activate; \
-	pip install -r requirements.txt; \
+	@virtualenv -p python3 $(directory)
+	@source ./$(directory)/bin/activate; \
+	if [ -a requirements.txt ] ; \
+	then \
+     @pip install -r requirements.txt ; \
+	fi;
+
 
 test_all:
-	python -m unitttest tests/*
+	python -m unittest tests/*
 
