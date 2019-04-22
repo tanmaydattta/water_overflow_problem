@@ -24,5 +24,11 @@ class TriangularStackTests(unittest.TestCase):
         """
         setup of default stack
         """
-        self.defaultStack = TriangularStack(size=ith_row,
-                                            unit_capacity=unit_capacity)
+        self.ith_row = 3
+        self.unit_capacity = 0.250
+        self.defaultStack = TriangularStack(size=self.ith_row,
+                                            unit_capacity=self.unit_capacity)
+
+    def test_triangular_stack_initialized_properly(self):
+        self.assertIsInstance(TriangularStack, self.defaultStack)
+        self.assertEquals
