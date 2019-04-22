@@ -31,9 +31,9 @@ class TriangularStackTests(unittest.TestCase):
 
     def test_triangular_stack_initialized_properly(self):
         "Base test"
-        self.assertIsInstance(TriangularStack, self.defaultStack)
-        self.assertEquals(self.ith_row, self.defaultStack.size)
-        self.assertEquals(self.unit_capacity, self.defaultStack.unit_capacity)
+        self.assertIsInstance(self.defaultStack, TriangularStack)
+        self.assertEqual(self.ith_row, self.defaultStack.size)
+        self.assertEqual(self.unit_capacity, self.defaultStack.unit_capacity)
 
     @data((4, 2), (5, 1), (2, 0.450), (1, 0.250))
     @unpack
