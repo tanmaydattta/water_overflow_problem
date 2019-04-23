@@ -7,7 +7,7 @@ import logging
 import logging.config
 import argparse
 
-from stacks import TriangularStack
+from stacks import TriangularStack, WaterNotFilledException
 
 __author__ = "tanmay.datta86@gmail.com"
 logging.config.fileConfig('logging.config',
@@ -26,7 +26,12 @@ def solveWaterOverFlowFor(jth_glass: int, ith_row: int, k_liter: float) -> float
     triangular_stack = TriangularStack(size=ith_row+1,
                                        unit_capacity=unit_capacity)
     triangular_stack.pour(k_liter)
-    return triangular_stack.get_water_at(ith_row, jth_glass)
+    try:
+        answer = triangular_stack.get_water_at(ith_row, jth_glass)
+    except WaterNotFilledException as wnfe:
+        # we dont care about it, just return 0 
+        LOGGER.info(str(wnfe.message))
+        return 0
 
 
 if __name__ == "__main__":
