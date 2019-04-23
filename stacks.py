@@ -32,9 +32,23 @@ class TriangularStack(WaterStack):
                                                                              unit_capacity))
         self.size = size
         self.unit_capacity = unit_capacity
+        self.water_distrubution_at_layers  = {}
     
-    def pour(self, n_liter:float)-> bool:
-        pass
+    def pour(self, water_volume:float)-> bool:
+        """
+        Method to pour n liters into the stack
+        """
+        current_layer = 0
+        unit_capacity = self.unit_capacity
+        while water_volume > 0 and current_layer < self.size:
+            (capacity, filled) = self.water_distrubution_at_layers.get(
+                current_layer, (current_layer*unit_capacity, 0.0))
+            if filled < capacity:
+                delta = capacity-filled
+                water_volume -= delta
+                self.water_distrubution_at_layers[current_layer] = (capacity, filled+delta)
+            current_layer += 1
+        return True
     
     def get_water_at_glass(self, row: int, column: int) -> float:
         pass
