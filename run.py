@@ -23,7 +23,7 @@ def solveWaterOverFlowFor(jth_glass: int, ith_row: int, k_liter: float) -> float
     LOGGER.debug("j => {}, i => {}, k => {}".format(
         jth_glass, ith_row, k_liter))
     unit_capacity = 0.250
-    triangular_stack = TriangularStack(size=ith_row,
+    triangular_stack = TriangularStack(size=ith_row+1,
                                        unit_capacity=unit_capacity)
     triangular_stack.pour(k_liter)
     return triangular_stack.get_water_at(ith_row, jth_glass)
