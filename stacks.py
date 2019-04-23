@@ -81,9 +81,15 @@ class TriangularStack(WaterStack):
     def get_water_at(self, row: int, _column: int) -> float:
         """Get the water  row, column currently column has no function
         """
-        print(self.water_distrubution_at_layers)
-        glass = self.water_distrubution_at_layers[row]
-        return glass.filled/(row + 1.0)
+        LOGGER.debug("row => {}, column => {}".format(row, _column))
+        if row < 0 or _column < 0:
+            raise ValueError(WRONG_INDEX_ERROR_STRING)
+        try:
+            LOGGER.debug(self.water_distrubution_at_layers)
+            glass = self.water_distrubution_at_layers[row]
+            return glass.filled/(row + 1.0)
+        except:
+            raise ValueError(WRONG_INDEX_ERROR_STRING)
 
 
 
