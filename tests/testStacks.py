@@ -43,3 +43,12 @@ class TriangularStackTests(unittest.TestCase):
                                            unit_capacity=self.unit_capacity)
         self.assertTrue(triangular_stack.pour(k_liter_water))
 
+
+    @data((4, 2, [(0,0, 0.250), (1,0, 0.250)]),)
+    @unpack
+    def test_query_water_in_stack(self, size, k_liters_to_be_poured, row_column_tests):
+        "Test querying for water in glass (row, column)"
+        triangular_stack = TriangularStack(size=size, unit_capacity=self.unit_capacity)
+        triangular_stack.pour(k_liters_to_be_poured)
+        for (row, column, expected_value) in row_column_tests:
+            self.assertEqual(triangular_stack.get_water_at(row, column), expected_value)
