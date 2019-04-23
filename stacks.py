@@ -12,6 +12,8 @@ __author__ = "tanmay.datta86@gmail.com"
 LOGGER = logging.getLogger(__name__)
 
 
+WRONG_INDEX_ERROR_STRING = "You selected wrong index"
+OVERFLOW_ERROR_STRING = "Overflow occured for a stack of height {}, you can only pour maximum of {} unit water"
 class WaterStack(ABC):
     """
     Interface for water stack
@@ -23,6 +25,14 @@ class WaterStack(ABC):
     @abstractclassmethod
     def get_water_at(self, row:int, column:int):
         pass
+
+class OverflowException(ValueError):
+    """
+    For raising overflow exception
+    """
+    def __init__(self, message = OVERFLOW_ERROR_STRING):
+        self.message = message
+
 
 class TriangularStack(WaterStack):
     "Implementation for required water stack"
