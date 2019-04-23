@@ -8,7 +8,7 @@ import unittest
 from ddt import ddt, data, unpack
 import logging
 
-from stacks import TriangularStack, OverflowException, WRONG_INDEX_ERROR_STRING
+from stacks import TriangularStack, OverflowException, WRONG_INDEX_ERROR_STRING, WaterNotFilledException
 
 __author__ = "tanmay.datta86@gmail.com"
 LOGGER = logging.getLogger(__name__)
@@ -61,6 +61,21 @@ class TriangularStackTests(unittest.TestCase):
                                            unit_capacity=self.unit_capacity)
         with self.assertRaises(OverflowException):
             triangular_stack.pour(k_liter_water)
+
+    @data(
+        (4, 0.3, [(3,0)]),
+        (10, 0.25, [(10, 0)])
+    )
+    @unpack
+    def test_query_water_in_stack_insufficent_water_poured(self, size, k_liters_to_be_poured, row_column_tests):
+        "Test querying for water in glass (row, column)"
+        triangular_stack = TriangularStack(
+            size=size, unit_capacity=self.unit_capacity)
+        triangular_stack.pour(k_liters_to_be_poured)
+        for (row, column) in row_column_tests:
+
+            with self.assertRaises(WaterNotFilledException):
+                triangular_stack.get_water_at(row, column)
 
     @data(
         (4, 2, [(0, 0, 0.250), (1, 0, 0.250)]),
