@@ -13,6 +13,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 WRONG_INDEX_ERROR_STRING = "You selected wrong index"
+WATER_NOT_FILLED = "The row column does not have water as of now"
 OVERFLOW_ERROR_STRING = "Overflow occured for a stack of height {}, you can only pour maximum of {} unit water"
 class WaterStack(ABC):
     """
@@ -33,6 +34,12 @@ class OverflowException(ValueError):
     def __init__(self, message = OVERFLOW_ERROR_STRING):
         self.message = message
 
+class WaterNotFilledException(ValueError):
+    """
+    For raising exception, when water is not filled in the glass
+    """
+    def __init__(self, message = WATER_NOT_FILLED):
+        self.message = message
 
 class TriangularStack(WaterStack):
     "Implementation for required water stack"
@@ -94,6 +101,8 @@ class TriangularStack(WaterStack):
             glass = self.water_distrubution_at_layers[row]
             return glass.filled/(row + 1.0)
         except:
+            if(row<=self.size and _column < row):
+                raise WaterNotFilledException()
             raise ValueError(WRONG_INDEX_ERROR_STRING)
 
 
