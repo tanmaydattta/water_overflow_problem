@@ -8,7 +8,7 @@ import unittest
 from ddt import ddt, data, unpack
 import logging
 
-from stacks import TriangularStack
+from stacks import TriangularStack, WRONG_INDEX_ERROR_STRING
 
 __author__ = "tanmay.datta86@gmail.com"
 LOGGER = logging.getLogger(__name__)
@@ -63,3 +63,20 @@ class TriangularStackTests(unittest.TestCase):
         triangular_stack.pour(k_liters_to_be_poured)
         for (row, column, expected_value) in row_column_tests:
             self.assertEqual(triangular_stack.get_water_at(row, column), expected_value)
+
+    @data((4, 2, [
+        (0, -1, ValueError(WRONG_INDEX_ERROR_STRING)),
+        (-1, -1, ValueError(WRONG_INDEX_ERROR_STRING)),
+        (-1, 0, ValueError(WRONG_INDEX_ERROR_STRING))
+    ]),)
+    @unpack
+    def test_query_water_in_stack_with_wrong_index(self, size, k_liters_to_be_poured, row_column_tests):
+        "Test querying for water in glass (row, column)"
+        triangular_stack = TriangularStack(
+            size=size, unit_capacity=self.unit_capacity)
+        triangular_stack.pour(k_liters_to_be_poured)
+        for (row, column, expected_error) in row_column_tests:
+            try:
+                triangular_stack.get_water_at(row, column)
+            except ValueError as value_error:
+                self.assertEqual(str(value_error), str(expected_error) )
