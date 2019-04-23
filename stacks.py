@@ -45,7 +45,7 @@ class TriangularStack(WaterStack):
         unit_capacity = self.unit_capacity
         while water_volume > 0 and current_layer < self.size:
             glass = self.water_distrubution_at_layers.get(
-                current_layer, Glass(capacity=current_layer*unit_capacity, filled=0.0))
+                current_layer, Glass(capacity=(current_layer+1)*unit_capacity, filled=0.0))
             if glass.filled < glass.capacity:
                 delta = glass.capacity-glass.filled
                 water_volume -= delta
@@ -56,8 +56,9 @@ class TriangularStack(WaterStack):
     def get_water_at(self, row: int, _column: int) -> float:
         """Get the water  row, column currently column has no function
         """
-        import pdb; pdb.set_trace()
-        return self.water_distrubution_at_layers[row][0]/(row + 1.0)
+        print(self.water_distrubution_at_layers)
+        glass = self.water_distrubution_at_layers[row]
+        return glass.filled/(row + 1.0)
 
 
 
