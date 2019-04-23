@@ -51,6 +51,8 @@ class TriangularStack(WaterStack):
                 water_volume -= delta
                 self.water_distrubution_at_layers[current_layer] = Glass(capacity=glass.capacity, filled=glass.filled + delta)
             current_layer += 1
+        if water_volume > 0: # layers finished and still water left ==> overflow !!
+            raise ValueError("Overflow !!")
         return True
     
     def get_water_at(self, row: int, _column: int) -> float:

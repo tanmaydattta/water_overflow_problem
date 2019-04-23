@@ -51,7 +51,8 @@ class TriangularStackTests(unittest.TestCase):
         "Test pouring water"
         triangular_stack = TriangularStack(size=size,
                                            unit_capacity=self.unit_capacity)
-        self.assertRaises(ValueError, triangular_stack.pour(k_liter_water))
+        with self.assertRaises(ValueError):
+            triangular_stack.pour(k_liter_water)
 
 
     @data((4, 2, [(0,0, 0.250), (1,0, 0.250)]),)
