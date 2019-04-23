@@ -45,6 +45,19 @@ class TriangularStack(WaterStack):
         self.size = size
         self.unit_capacity = unit_capacity
         self.water_distrubution_at_layers  = {}
+        self.maximum_water_limit = TriangularStack.max_sum(unit_capacity, size)
+
+    @staticmethod
+    def max_sum(unit_capacity: float, size: int) -> float:
+        """
+        Just a helper function to calculate maximum volume of water a given Triangle stack can hold
+        """
+        sum = 0
+        for l in range(1,size + 1):
+            for n in range(1, l+1):
+                sum += 1
+        return sum * unit_capacity
+
     
     def pour(self, water_volume:float)-> bool:
         """
