@@ -71,8 +71,13 @@ class TriangularStack(WaterStack):
                 current_layer, Glass(capacity=(current_layer+1)*unit_capacity, filled=0.0))
             if glass.filled < glass.capacity:
                 delta = glass.capacity-glass.filled
-                water_volume -= delta
-                self.water_distrubution_at_layers[current_layer] = Glass(capacity=glass.capacity, filled=glass.filled + delta)
+                if delta < water_volume:
+                    water_volume -= delta
+                    self.water_distrubution_at_layers[current_layer] = Glass(capacity=glass.capacity, filled=glass.filled + delta)
+                else:
+                    self.water_distrubution_at_layers[current_layer] = Glass(capacity=glass.capacity, filled=glass.filled + water_volume)
+                    water_volume = 0
+
             current_layer += 1
         if water_volume > 0: # layers finished and still water left ==> overflow !!
             raise OverflowException(OVERFLOW_ERROR_STRING.format(self.size, self.maximum_water_limit))
