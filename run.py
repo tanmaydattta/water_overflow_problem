@@ -15,7 +15,8 @@ logging.config.fileConfig('logging.config',
 
 LOGGER = logging.getLogger("MainRunnerWaterOverflow")
 
-def solveWaterOverFlowFor(jth_glass:int, ith_row:int, k_liter:float)-> float:
+
+def solveWaterOverFlowFor(jth_glass: int, ith_row: int, k_liter: float) -> float:
     """
     Function to solve water
     """
@@ -26,8 +27,7 @@ def solveWaterOverFlowFor(jth_glass:int, ith_row:int, k_liter:float)-> float:
                                        unit_capacity=unit_capacity)
     triangular_stack.pour(k_liter)
     return triangular_stack.get_water_at(ith_row, jth_glass)
-    
-    
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -43,6 +43,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     LOGGER.debug("j => {}, i => {}, k => {}".format(
         args.jth_glass, args.ith_row, args.k_liter))
-    solveWaterOverFlowFor(args.jth_glass, args.ith_row, args.k_liter)
 
-    
+    print(solveWaterOverFlowFor(args.jth_glass, args.ith_row, args.k_liter))
