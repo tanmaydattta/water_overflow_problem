@@ -1,5 +1,17 @@
 # water_overflow_problem
-Water overflow problem coding challenge
+Water overflow problem coding challenge for another firm in Melbourne. 
+The final result was "no answer" the firm was kind enough to not bother to even give an answer after wasting my 1 day. 
+
+Feel free to copy, use, abuse this code. Any suggestion how to over engineer this code is welcome :).. 
+
+In my personal opinion anyone who would write such solution for such a simple question is an idiot, but hey the requirements says that manager "loves" TDD and 
+want to see "approach" and all corporate bullshit.
+
+
+# Travis build and test runs status 
+[![Build Status](https://travis-ci.org/tanmaydattta/water_overflow_problem.svg?branch=master)](https://travis-ci.org/tanmaydattta/water_overflow_problem)
+
+
 
 Author:Tanmay
 
