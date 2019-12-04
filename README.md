@@ -4,8 +4,8 @@ The final result was "no answer" the firm was kind enough to not bother to even 
 
 Feel free to copy, use, abuse this code. Any suggestion how to over engineer this code is welcome :).. 
 
-In my personal opinion anyone who would write such solution for such a simple question is an idiot, but hey the requirements says that manager "loves" TDD and 
-want to see "approach" and all corporate bullshit.
+In my personal opinion I would not hire anyone who would write such solution for such a simple question,
+But the requirements says that manager wanted to see TDD and want to see "approach" and all corporate bullshit. 
 
 
 # Travis build and test runs status 
